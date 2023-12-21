@@ -13,8 +13,6 @@ import java.awt.Desktop;
 import java.awt.event.ActionListener;
 import java.net.URI;
 import java.awt.event.ActionEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 public class Sobre extends JDialog {
 
@@ -61,12 +59,6 @@ public class Sobre extends JDialog {
 		getContentPane().add(lblNewLabel_2);
 		
 		JLabel lblWebService = new JLabel("republicavirtual.com.br");
-		lblWebService.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				link("https://republicavirtual.com.br/");
-			}
-		});
 		lblWebService.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		lblWebService.setForeground(SystemColor.textHighlight);
 		lblWebService.setBounds(135, 128, 221, 14);
@@ -75,7 +67,6 @@ public class Sobre extends JDialog {
 		JButton btnLinkedin = new JButton("");
 		btnLinkedin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				link("https://www.linkedin.com/in/caduribeiro93/");
 			}
 		});
 		btnLinkedin.setToolTipText("Linkedin");
@@ -89,7 +80,6 @@ public class Sobre extends JDialog {
 		JButton btnGitHub = new JButton("");
 		btnGitHub.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				link("https://github.com/CaduRibeiro93/Buscador-CEP");
 			}
 		});
 		btnGitHub.setToolTipText("Projeto");
@@ -97,7 +87,7 @@ public class Sobre extends JDialog {
 		btnGitHub.setBorder(null);
 		btnGitHub.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnGitHub.setBackground(SystemColor.control);
-		btnGitHub.setBounds(111, 175, 48, 48);
+		btnGitHub.setBounds(135, 175, 48, 48);
 		getContentPane().add(btnGitHub);
 
 	}// Fim do construtor

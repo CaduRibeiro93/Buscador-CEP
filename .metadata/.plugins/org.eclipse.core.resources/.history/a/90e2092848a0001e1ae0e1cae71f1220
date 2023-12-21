@@ -97,7 +97,7 @@ public class Sobre extends JDialog {
 		btnGitHub.setBorder(null);
 		btnGitHub.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnGitHub.setBackground(SystemColor.control);
-		btnGitHub.setBounds(111, 175, 48, 48);
+		btnGitHub.setBounds(135, 175, 48, 48);
 		getContentPane().add(btnGitHub);
 
 	}// Fim do construtor
