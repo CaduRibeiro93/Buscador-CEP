@@ -5,9 +5,6 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
-import Atxy2k.CustomTextField.RestrictedTextField;
-
 import java.awt.Toolkit;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -126,9 +123,5 @@ public class Cep extends JFrame {
 		btnSobre.setBackground(SystemColor.control);
 		btnSobre.setBounds(351, 13, 48, 48);
 		contentPane.add(btnSobre);
-		/* Uso da biblioteca Atxy2k para validação do campo txtCep */
-		RestrictedTextField validar = new RestrictedTextField(txtCep);
-		validar.setOnlyNums(true);
-		validar.setLimit(8);
 	}
 }
