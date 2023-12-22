@@ -118,11 +118,6 @@ public class Cep extends JFrame {
 		contentPane.add(cboUf);
 
 		JButton btnLimpar = new JButton("Limpar");
-		btnLimpar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				limpar();
-			}
-		});
 		btnLimpar.setBounds(38, 206, 89, 23);
 		contentPane.add(btnLimpar);
 
@@ -156,7 +151,7 @@ public class Cep extends JFrame {
 		contentPane.add(btnSobre);
 		/* Uso da biblioteca Atxy2k para validação do campo txtCep */
 		RestrictedTextField validar = new RestrictedTextField(txtCep);
-
+		
 		lblStatus = new JLabel("");
 		lblStatus.setBounds(169, 39, 20, 20);
 		contentPane.add(lblStatus);
@@ -169,51 +164,41 @@ public class Cep extends JFrame {
 		String tipoLogradouro = "";
 		String resultado = null;
 		String cep = txtCep.getText();
-		try {
-			URL url = new URL("http://cep.republicavirtual.com.br/web_cep.php?cep=" + cep + "&formato=xml");
-			SAXReader xml = new SAXReader();
-			Document documento = xml.read(url);
-			Element root = documento.getRootElement();
-			for (Iterator<Element> it = root.elementIterator(); it.hasNext();) {
-				Element element = it.next();
-				if (element.getQualifiedName().equals("cidade")) {
-					txtCidade.setText(element.getText());
-				}
-				if (element.getQualifiedName().equals("bairro")) {
-					txtBairro.setText(element.getText());
-				}
-				if (element.getQualifiedName().equals("uf")) {
-					cboUf.setSelectedItem(element.getText());
-				}
-				if (element.getQualifiedName().equals("tipo_logradouro")) {
-					tipoLogradouro = element.getText();
-
-				}
-				if (element.getQualifiedName().equals("resultado")) {
-					resultado = element.getText();
-					if (resultado.equals("1")) {
-						lblStatus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/check.png")));
-					} else {
-						JOptionPane.showMessageDialog(null, "CEP não encontrado");
-					}
-				}
-			}
-			// setar o campo endereco
-			txtEndereco.setText(tipoLogradouro + " " + logradouro);
-
-		} catch (Exception e) {
-			System.out.println(e);
-		}
-	} 
-	
-	private void limpar() {
-		txtCep.setText(null);
-		txtEndereco.setText(null);
-		txtBairro.setText(null);
-		txtCidade.setText(null);
-		cboUf.setSelectedItem(null);
-		txtCep.requestFocus();
-		lblStatus.setIcon(null);
+	try {
+		URL url = new URL("http://cep.republicavirtual.com.br/web_cep.php?cep=" + cep + "&formato=xml");
+		SAXReader xml = new SAXReader();
+		Document documento = xml.read(url);
+		Element root = documento.getRootElement();
+		for (Iterator<Element> it = root.elementIterator(); it.hasNext();) {
+	        Element element = it.next();
+	        if (element.getQualifiedName().equals("cidade")) {
+	        	txtCidade.setText(element.getText());
+	        }
+	        if (element.getQualifiedName().equals("bairro")) {
+	        	txtBairro.setText(element.getText());
+	        }
+	        if (element.getQualifiedName().equals("uf")) {
+	        	cboUf.setSelectedItem(element.getText());
+	        }
+	        if (element.getQualifiedName().equals("tipo_logradouro")) {
+	        	tipoLogradouro = element.getText();
+	        		
+	        }
+	        if (element.getQualifiedName().equals("resultado")) {
+	        	resultado = element.getText();
+	        	if (resultado.equals("1")) {
+	        		lblStatus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/check.png")));
+	        	} else {
+	        		JOptionPane.showMessageDialog(null, "CEP não encontrado");
+	        	}
+	        }
+	    }
+		//setar o campo endereco
+		txtEndereco.setText(tipoLogradouro + " " + logradouro);
+		
+	} catch (Exception e) {
+		System.out.println(e);
 	}
-
+	}
+	
 }
